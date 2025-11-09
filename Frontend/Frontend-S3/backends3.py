@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 
 # Your bucket name
-BUCKET_NAME = "s3entry"    # change the bucket name 
+BUCKET_NAME = "s3copyofthedatapayment"    # change the bucket name 
 
 # Initialize boto3 S3 client (it will use IAM role attached to EC2)
 s3 = boto3.client("s3")

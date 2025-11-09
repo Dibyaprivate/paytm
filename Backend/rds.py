@@ -3,14 +3,14 @@ import pymysql
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # Allow frontend to call backend
+CORS(app)
 
-# RDS MySQL config
+# ---------- RDS MySQL Configuration ----------
 db_config = {
-    "host": "",  #add your rds  
+    "host": "database-1.cq3e0u2k6xee.us-east-1.rds.amazonaws.com",  # your RDS endpoint
     "user": "admin",
-    "password": "Cloud1234",  #add your password 
-    "database": "paytm"  #add your db name 
+    "password": "cloud123",
+    "database": "paytm"
 }
 
 def get_db_connection():
@@ -76,5 +76,13 @@ def login_user():
         return jsonify({"error": str(e)}), 500
 
 
+# ---------- HEALTH CHECK ----------
+@app.route("/", methods=["GET"])
+def health_check():
+    return "OK", 200
+
+
+# ---------- MAIN ----------
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+
